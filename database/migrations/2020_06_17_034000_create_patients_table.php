@@ -14,7 +14,7 @@ class CreatePatientsTable extends Migration
     public function up()
     {
         Schema::create('patients', function (Blueprint $table) {
-            $table->unsignedBigInteger('id')->primary()->autoIncrement();
+            $table->bigIncrements('id');
             $table->string('first_name', 100);
             $table->string('last_name', 100);
             $table->char('middle_initial', 5)->nullable();
@@ -25,8 +25,15 @@ class CreatePatientsTable extends Migration
             $table->unsignedInteger('mobile_number');
             $table->unsignedInteger('landline_number')->nullable();
             $table->unsignedTinyInteger('sex_id');
-            $table->unsignedTinyInteger('marital_status_id');
+            $table->unsignedTinyInteger('civil_status_id');
             $table->timestamps();
+
+            $table->foreign('sex_id')->references('id')->on('sexes')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('civil_status_id')->references('id')->on('civil_statuses')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->index(['first_name', 'last_name', 'age', 'created_at', 'updated_at', 'sex_id', 'civil_status_id'], 'patient_index');
         });
     }
 
