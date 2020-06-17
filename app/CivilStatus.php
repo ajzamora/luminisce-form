@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CivilStatus extends Model
 {
-    //
+    protected $fillable = [
+        'status',
+    ];
 }
