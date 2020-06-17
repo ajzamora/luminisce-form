@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group col-md-3 mr-5">
                         <label for="civil_status_id">Civil Status:</label>
-                        <select id="civil_status_id" class="form-control" value={{ $patient->civil_status_id }} >
+                        <select id="civil_status_id" name="civil_status_id" class="form-control" value={{ $patient->civil_status_id }} >
                             @foreach ($civil_statuses as $civil_status)
                                 <option value="{{ $civil_status->id }}" {{ ($civil_status->id==$patient->civil_status_id)? "selected" : "" }} >{{ $civil_status->status }}</option>
                             @endforeach
@@ -55,25 +55,25 @@
                 </div>
                 <div class="form-group">
                     <label for="home_address">Home Address:</label>
-                    <input type="text" class="form-control" name="home_address" value={{ $patient->home_address }} />
+                    <input type="text" class="form-control" name="home_address" placeholder="Home Address" value="{{ $patient->home_address }}" />
                 </div>
                 <div class="form-group">
                     <label for="work_address">Work Address:</label>
-                    <input type="text" class="form-control" name="work_address" value={{ $patient->work_address }} />
+                    <input type="text" class="form-control" name="work_address" placeholder="Work Address" value="{{ $patient->work_address }}" />
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="text" class="form-control" name="email" value={{ $patient->email }} />
+                    <input type="text" class="form-control" name="email" placeholder="Email (e.g. name@example.com)" value="{{ $patient->email }}" />
                 </div>
                 <div class="form-group">
                     <label for="mobile_number">Mobile Number:</label>
-                    <input type="text" class="form-control" name="mobile_number" value={{ $patient->mobile_number }} />
+                    <input type="text" class="form-control" name="mobile_number" placeholder="Mobile number" value="{{ $patient->mobile_number }}" />
                 </div>
                 <div class="form-group">
                     <label for="landline_number">Landline Number:</label>
-                    <input type="text" class="form-control" name="landline_number" value={{ $patient->landline_number }} />
+                    <input type="text" class="form-control" name="landline_number" placeholder="Landline number" value="{{ $patient->landline_number }}" />
                 </div>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary float-right">Update</button>
             </form>
         </div>
     </div>

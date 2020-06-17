@@ -61,8 +61,6 @@ class PatientController extends Controller
             'email' => $request->get('email'),
             'mobile_number' => $request->get('mobile_number'),
             'landline_number' => $request->get('landline_number'),
-            'sex_id' => $request->get('sex_id'),
-            'civil_status_id' => $request->get('civil_status_id'),
         ]);
         $patient->sex_id = $request->get('sex_id');
         $patient->civil_status_id = $request->get('civil_status_id');

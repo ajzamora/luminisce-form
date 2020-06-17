@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group col-md-3 mr-5">
                             <label for="civil_status_id">Civil Status:</label>
-                            <select id="civil_status_id" class="form-control">
+                            <select id="civil_status_id" name="civil_status_id" class="form-control">
                                 @foreach ($civil_statuses as $civil_status)
                                     <option value="{{ $civil_status->id }}">{{ $civil_status->status }}</option>
                                 @endforeach
@@ -55,23 +55,23 @@
                     </div>
                     <div class="form-group">
                         <label for="home_address">Home Address:</label>
-                        <input type="text" class="form-control" name="home_address" placeholder="Enter Home Address"/>
+                        <input type="text" class="form-control" name="home_address" placeholder="Home Address"/>
                     </div>
                     <div class="form-group">
                         <label for="work_address">Work Address:</label>
-                        <input type="text" class="form-control" name="work_address" placeholder="Enter Work Address"/>
+                        <input type="text" class="form-control" name="work_address" placeholder="Work Address"/>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="text" class="form-control" name="email" placeholder="Enter email (e.g. name@example.com)"/>
+                        <input type="text" class="form-control" name="email" placeholder="Email (e.g. name@example.com)"/>
                     </div>
                     <div class="form-group">
                         <label for="mobile_number">Mobile Number:</label>
-                        <input type="text" class="form-control" name="mobile_number" placeholder="Enter mobile number"/>
+                        <input type="text" class="form-control" name="mobile_number" placeholder="mobile number"/>
                     </div>
                     <div class="form-group">
                         <label for="landline_number">Landline Number:</label>
-                        <input type="text" class="form-control" name="landline_number" placeholder="Enter landline number"/>
+                        <input type="text" class="form-control" name="landline_number" placeholder="landline number"/>
                     </div>
                     <button type="submit" class="btn btn-primary float-right">Add patient</button>
                 </form>
