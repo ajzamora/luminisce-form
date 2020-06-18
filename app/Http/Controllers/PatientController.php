@@ -176,6 +176,56 @@ class PatientController extends Controller
     }
 
     /**
+     * Show the step 3 Form for creating a new patient.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createStep3(Request $request)
+    {
+        $patient = $request->session()->get('patient');
+        $sexes = Sex::all()->sortBy('id');
+        $civil_statuses = CivilStatus::all()->sortBy('id');
+        return view('patients.create-step3')->with(compact('patient', 'sexes', 'civil_statuses', 'data'));
+    }
+
+    /**
+     * Post Request to store step3 info in session
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postCreateStep3(Request $request)
+    {
+
+        return redirect('/patients/create-step4');
+    }
+
+    /**
+     * Show the step 4 Form for creating a new patient.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createStep4(Request $request)
+    {
+        $patient = $request->session()->get('patient');
+        $sexes = Sex::all()->sortBy('id');
+        $civil_statuses = CivilStatus::all()->sortBy('id');
+        return view('patients.create-step4')->with(compact('patient', 'sexes', 'civil_statuses', 'data'));
+    }
+
+    /**
+     * Post Request to store step4 info in session
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postCreateStep4(Request $request)
+    {
+        $patient = $request->session()->get('patient');
+        dd($patient);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
