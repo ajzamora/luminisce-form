@@ -14,6 +14,7 @@ class CreatePatientContactPeopleTable extends Migration
     public function up()
     {
         Schema::create('patient_contact_people', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->foreignId('patient_id')
                 ->constrained('patients')
                 ->onUpdate('cascade')
@@ -25,7 +26,7 @@ class CreatePatientContactPeopleTable extends Migration
             $table->string('relationship');
             $table->timestamps();
 
-            $table->primary(['patient_id', 'contact_person_id']);
+//            $table->primary(['patient_id', 'contact_person_id']);
             $table->index(['relationship', 'created_at', 'updated_at']);
         });
     }

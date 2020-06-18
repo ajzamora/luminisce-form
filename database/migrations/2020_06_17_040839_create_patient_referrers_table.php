@@ -14,6 +14,7 @@ class CreatePatientReferrersTable extends Migration
     public function up()
     {
         Schema::create('patient_referrers', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->foreignId('patient_id')
                 ->constrained()
                 ->onUpdate('cascade')
@@ -25,7 +26,7 @@ class CreatePatientReferrersTable extends Migration
             $table->string('relationship');
             $table->timestamps();
 
-            $table->primary(['patient_id', 'referrer_id']);
+//            $table->primary(['patient_id', 'referrer_id']);
             $table->index(['relationship', 'created_at', 'updated_at']);
         });
     }
