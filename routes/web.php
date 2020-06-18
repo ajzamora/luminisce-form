@@ -17,10 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', 'HomeController@index')->name('home')
+    ->middleware('auth');
+
+Route::get('/patients/create-step1', 'PatientController@createStep1')->name('patients.create-step1')
+    ->middleware('auth');
+Route::post('/patients/create-step1', 'PatientController@postCreateStep1')->name('patients.create-step1')
+    ->middleware('auth');
+
+Route::get('/patients/create-step2', 'PatientController@createStep2')->name('patients.create-step2')
+    ->middleware('auth');
+Route::post('/patients/create-step2', 'PatientController@postCreateStep2')->name('patients.create-step2')
+    ->middleware('auth');
+
 Route::resource('patients', "PatientController")
     ->middleware('auth');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home')
-    ->middleware('auth');

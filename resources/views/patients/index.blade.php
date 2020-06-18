@@ -50,6 +50,6 @@
         <div>
     </div>
     <div class="float-right pr-5 pt-3">
-        <a href="{{ route('patients.create')}}" class="btn btn-primary">Add patient</a>
+        <a href="{{ route('patients.create-step1')}}" class="btn btn-primary">Add patient</a>
     </div>
 @endsection
