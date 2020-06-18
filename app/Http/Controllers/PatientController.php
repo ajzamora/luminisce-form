@@ -123,7 +123,7 @@ class PatientController extends Controller
         $request->session()->put('referrer', $referrer);
 
         $patient_referrer = (empty($request->session()->get('patient_referrer'))) ?
-            new PatientContactPerson : $request->session()->get('patient_referrer');
+            new PatientReferrer : $request->session()->get('patient_referrer');
         $patient_referrer->relationship = $request->get('patient_referrer_relationship');
         $request->session()->put('patient_referrer', $patient_referrer);
 
