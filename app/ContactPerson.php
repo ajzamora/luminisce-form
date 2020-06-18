@@ -11,4 +11,8 @@ class ContactPerson extends Model
         'home_address',
         'contact_number',
     ];
+
+    public function patientContactPerson(){
+        $this->hasMany(PatientContactPerson::class);
+    }
 }

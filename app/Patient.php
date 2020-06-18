@@ -16,4 +16,9 @@ class Patient extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function patientContactPerson(){
+        $this->hasMany(PatientContactPerson::class);
+    }
+
 }
