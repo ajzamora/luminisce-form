@@ -12,6 +12,11 @@ class ContactPerson extends Model
         'contact_number',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     public function patientContactPeople(){
         return $this->hasMany('App\PatientContactPerson');
     }

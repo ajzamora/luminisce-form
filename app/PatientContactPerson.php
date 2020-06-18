@@ -10,6 +10,11 @@ class PatientContactPerson extends Model
         'relationship',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     public function patient(){
         return $this->belongsTo('App\Patient');
     }

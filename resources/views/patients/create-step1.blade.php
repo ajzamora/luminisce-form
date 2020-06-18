@@ -76,11 +76,36 @@
                         <label for="work_address">Work Address:</label>
                         <input type="text" class="form-control" name="work_address" placeholder="Work Address" value="{{ $patient->work_address ?? '' }}" />
                     </div>
-                    {{--           NEW          --}}
-{{--                    <div class="form-group">--}}
-{{--                        <label for="work_address">Emergency Contact Person:</label>--}}
-{{--                        <input type="text" class="form-control" name="work_address" placeholder="Work Address" value="{{ $patient_contact_person->work_address ?? '' }}" />--}}
-{{--                    </div>--}}
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="contact_person_full_name">Emergency Contact Person's Name:</label>
+                            <input type="text" class="form-control" name="contact_person_full_name" placeholder="Contact Person's Full-name (First name, Initial, Last name)" value="{{ $contact_person->full_name ?? '' }}" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="patient_contact_person_relationship">Relationship:</label>
+                            <input type="text" class="form-control" name="patient_contact_person_relationship" placeholder="Relationship to Contact Person" value="{{ $patient_contact_person->relationship ?? '' }}" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="contact_person_address">Contact Person's Address:</label>
+                            <input type="text" class="form-control" name="contact_person_address" placeholder="Contact Person's Address" value="{{ $contact_person->home_address ?? '' }}" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="contact_person_number">Contact Number:</label>
+                            <input type="text" class="form-control" name="contact_person_number" placeholder="Contact Person's Number" value="{{ $contact_person->contact_number ?? '' }}" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="referrer_full_name">Refferer's Name:</label>
+                            <input type="text" class="form-control" name="referrer_full_name" placeholder="Referrer's Full-name (First name, Initial, Last name)" value="{{ $referrer->full_name ?? '' }}" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="patient_referrer_relationship">Relationship:</label>
+                            <input type="text" class="form-control" name="patient_referrer_relationship" placeholder="Relationship to Referrer" value="{{ $patient_referrer->relationship ?? '' }}" />
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary float-right">Next</button>
                     <a type="button" href="/patients" class="btn btn-secondary float-right mr-3">Go Back</a>
                 </form>

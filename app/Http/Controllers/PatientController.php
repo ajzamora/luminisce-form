@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Patient;
+use App\ContactPerson;
+use App\PatientContactPerson;
+use App\Referrer;
+use App\PatientReferrer;
 use App\Sex;
 use App\CivilStatus;
 
@@ -40,9 +44,18 @@ class PatientController extends Controller
     public function createStep1(Request $request)
     {
         $patient = $request->session()->get('patient');
+        $contact_person = $request->session()->get('contact_person');
+        $patient_contact_person = $request->session()->get('patient_contact_person');
+        $referrer = $request->session()->get('referrer');
+        $patient_referrer = $request->session()->get('patient_referrer');
+
         $sexes = Sex::all()->sortBy('id');
         $civil_statuses = CivilStatus::all()->sortBy('id');
-        return view('patients.create-step1')->with(compact('patient', 'sexes', 'civil_statuses'));
+        return view('patients.create-step1')->with(compact(
+            'patient', 'sexes', 'civil_statuses',
+            'contact_person', 'patient_contact_person',
+            'referrer', 'patient_referrer'
+        ));
     }
 
     /**
@@ -69,30 +82,51 @@ class PatientController extends Controller
         $validatedData = $request->validate([
             'first_name'=>'required',
             'last_name'=>'required',
-            'middle_initial'=>'string|nullable',
-            'age'=>'required',
-            'home_address'=>'required',
-            'work_address'=>'string|nullable',
-            'email'=>'required',
-            'mobile_number'=>'required',
-            'landline_number'=>'integer|nullable',
-            'sex_id'=>'required',
-            'civil_status_id'=>'required',
+            'middle_initial'=>'nullable',
+            'age'=>'nullable',
+            'home_address'=>'nullable',
+            'work_address'=>'nullable',
+            'email'=>'nullable',
+            'mobile_number'=>'nullable',
+            'landline_number'=>'nullable',
+            'sex_id'=>'nullable',
+            'civil_status_id'=>'nullable',
+            'contact_person_full_name'=>'nullable',
+            'contact_person_address'=>'nullable',
+            'contact_person_number'=>'nullable',
+            'referrer_full_name'=>'nullable',
+            'patient_contact_person_relationship'=>'nullable',
         ]);
 
-        if(empty($request->session()->get('patient'))){
-            $patient = new Patient();
-            $patient->fill($validatedData);
-            $patient->sex_id = $request->get('sex_id');
-            $patient->civil_status_id = $request->get('civil_status_id');
-            $request->session()->put('patient', $patient);
-        }else{
-            $patient = $request->session()->get('patient');
-            $patient->fill($validatedData);
-            $patient->sex_id = $request->get('sex_id');
-            $patient->civil_status_id = $request->get('civil_status_id');
-            $request->session()->put('patient', $patient);
-        }
+        $patient = (empty($request->session()->get('patient'))) ?
+                new Patient : $request->session()->get('patient');
+        $patient->fill($validatedData);
+        $patient->sex_id = $request->get('sex_id');
+        $patient->civil_status_id = $request->get('civil_status_id');
+        $request->session()->put('patient', $patient);
+
+        $contact_person = (empty($request->session()->get('contact_person'))) ?
+            new ContactPerson : $request->session()->get('contact_person');
+        $contact_person->full_name = $request->get('contact_person_full_name');
+        $contact_person->home_address = $request->get('contact_person_address');
+        $contact_person->contact_number = $request->get('contact_person_number');
+        $request->session()->put('contact_person', $contact_person);
+
+        $patient_contact_person = (empty($request->session()->get('patient_contact_person'))) ?
+            new PatientContactPerson : $request->session()->get('patient_contact_person');
+        $patient_contact_person->relationship = $request->get('patient_contact_person_relationship');
+        $request->session()->put('patient_contact_person', $patient_contact_person);
+
+        $referrer = (empty($request->session()->get('referrer'))) ?
+            new Referrer : $request->session()->get('referrer');
+        $referrer->full_name = $request->get('referrer_full_name');
+        $request->session()->put('referrer', $referrer);
+
+        $patient_referrer = (empty($request->session()->get('patient_referrer'))) ?
+            new PatientContactPerson : $request->session()->get('patient_referrer');
+        $patient_referrer->relationship = $request->get('patient_referrer_relationship');
+        $request->session()->put('patient_referrer', $patient_referrer);
+
         return redirect('/patients/create-step2');
     }
 
