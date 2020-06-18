@@ -11,10 +11,10 @@ class PatientContactPerson extends Model
     ];
 
     public function patient(){
-        $this->belongsTo(Patient::class);
+        return $this->belongsTo('App\Patient');
     }
 
     public function contactPerson(){
-        $this->belongsTo(ContactPerson::class);
+        return $this->belongsTo('App\ContactPerson');
     }
 }

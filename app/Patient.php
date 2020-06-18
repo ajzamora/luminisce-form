@@ -17,8 +17,12 @@ class Patient extends Model
         'updated_at' => 'datetime',
     ];
 
-    public function patientContactPerson(){
-        $this->hasMany(PatientContactPerson::class);
+    public function patientContactPeople(){
+        return $this->hasMany('App\PatientContactPerson');
+    }
+
+    public function contactPeople(){
+        return $this->hasManyThrough('App\ContactPerson', 'App\PatientContactPerson');
     }
 
 }

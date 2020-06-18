@@ -12,7 +12,11 @@ class ContactPerson extends Model
         'contact_number',
     ];
 
-    public function patientContactPerson(){
-        $this->hasMany(PatientContactPerson::class);
+    public function patientContactPeople(){
+        return $this->hasMany('App\PatientContactPerson');
+    }
+
+    public function patients(){
+        return $this->hasManyThrough('App\Patient', 'App\PatientContactPerson');
     }
 }
