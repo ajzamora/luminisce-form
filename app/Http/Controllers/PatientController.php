@@ -10,6 +10,7 @@ use App\Referrer;
 use App\PatientReferrer;
 use App\Sex;
 use App\CivilStatus;
+use App\Form;
 
 class PatientController extends Controller
 {
@@ -137,8 +138,6 @@ class PatientController extends Controller
      */
     public function createStep2(Request $request)
     {
-//        $patient = $request->session()->get('patient');
-//        return view('patients.create-step2',compact('patient'));
         $data['medications'][0] = [
             1 => ['id' => 1, 'name' => 'Oral Contraceptive Pills' ],
             2 => ['id' => 2, 'name' => 'Hormones' ],
@@ -153,7 +152,7 @@ class PatientController extends Controller
             3 => ['id' => 3, 'type' => 'Collagen' ],
         ];
         $data['allergies'] = [
-            1 => ['id' => 1, 'type' => 'medications' ],
+            1 => ['id' => 1, 'type' => 'Medications' ],
             2 => ['id' => 2, 'type' => 'Foods' ],
             3 => ['id' => 3, 'type' => 'Latex' ],
         ];
@@ -176,10 +175,11 @@ class PatientController extends Controller
             5 => ['id' => 5, 'type' => 'Body Slimming Treatment' ],
             6 => ['id' => 6, 'type' => 'Permanent Implant Tattoo' ],
         ];
-        $patient = $request->session()->get('patient');
-        $sexes = Sex::all()->sortBy('id');
-        $civil_statuses = CivilStatus::all()->sortBy('id');
-        return view('patients.create-step2')->with(compact('patient', 'sexes', 'civil_statuses', 'data'));
+
+        $form = $request->session()->get('form');
+        return view('patients.create-step2')->with(compact(
+            'form', 'data'
+        ));
     }
 
     /**
@@ -190,25 +190,59 @@ class PatientController extends Controller
      */
     public function postCreateStep2(Request $request)
     {
-//        $patient = $request->session()->get('patient');
-//        if(!isset($patient->patientImg)) {
-//            $request->validate([
-//                'patientimg' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-//            ]);
-//
-//            $fileName = "patientImage-" . time() . '.' . request()->patientimg->getClientOriginalExtension();
-//
-//            $request->patientimg->storeAs('patientimg', $fileName);
-//
-//            $patient = $request->session()->get('patient');
-//
-//            $patient->patientImg = $fileName;
-//            $request->session()->put('patient', $patient);
-//        }
+
+        $validatedData = $request->validate([
+            'query06'=>'nullable', 'query07'=>'nullable', 'query09'=>'nullable',
+            'query10'=>'nullable', 'query14'=>'nullable', 'query17'=>'nullable',
+            'query16'=>'nullable', 'query18'=>'nullable',
+        ]);
+
+        $request->validate([
+            'query01'=>'nullable', 'query02'=>'nullable', 'query03'=>'nullable',
+            'query04'=>'nullable', 'query05'=>'nullable',
+            'query08'=>'nullable',
+            'query11'=>'nullable', 'query12'=>'nullable',
+            'query13'=>'nullable', 'query15'=>'nullable',
+            'query19_1'=>'nullable', 'query19_2'=>'nullable', 'query19_3'=>'nullable',
+            'query19_5'=>'nullable', 'query19_4'=>'nullable', 'query19_6'=>'nullable',
+        ]);
+        $form = (empty($request->session()->get('form'))) ?
+            new Form : $request->session()->get('form');
+        $form->fill($validatedData);
+
+        $form->query01 = $request->get('query01') . "|| " . $request->get('query01-extra');
+        $form->query04 = $request->get('query04') . "|| " . $request->get('query04-extra');
+        $form->query08 = $request->get('query08') . "|| " . $request->get('query08-extra');
+        $form->query12 = $request->get('query12') . "|| " . $request->get('query12-extra');
+        $form->query13 = $request->get('query13') . "|| " . $request->get('query13-extra');
+        $form->query15 = $request->get('query15') . "|| " . $request->get('query15-extra');
+        $form->query02 = $this->checkboxHelper($request, 'query02-', 6) . "|| " . $request->get("query02-extra");
+        $form->query03 = $this->checkboxHelper($request, 'query03-', 3) . "|| " . $request->get("query03-extra");
+        $form->query05 = $this->checkboxHelper($request, 'query05-', 3) . "|| " . $request->get("query05-extra");
+        $form->query11 = $this->checkboxHelper($request, 'query11-', 5);
+        $form->query19_1 = $request->get('query19-1bool') . "|| " . $request->get('query19-1what') . "|| " . $request->get('query19-1when') . "|| " . $request->get('query19-1where');
+        $form->query19_2 = $request->get('query19-2bool') . "|| " . $request->get('query19-2what') . "|| " . $request->get('query19-2when') . "|| " . $request->get('query19-2where');
+        $form->query19_3 = $request->get('query19-3bool') . "|| " . $request->get('query19-3what') . "|| " . $request->get('query19-3when') . "|| " . $request->get('query19-3where');
+        $form->query19_4 = $request->get('query19-4bool') . "|| " . $request->get('query19-4what') . "|| " . $request->get('query19-4when') . "|| " . $request->get('query19-4where');
+        $form->query19_5 = $request->get('query19-5bool') . "|| " . $request->get('query19-5what') . "|| " . $request->get('query19-5when') . "|| " . $request->get('query19-5where');
+        $form->query19_6 = $request->get('query19-6bool') . "|| " . $request->get('query19-6what') . "|| " . $request->get('query19-6when') . "|| " . $request->get('query19-6where');
+
+        $request->session()->put('form', $form);
         return redirect('/patients/create-step3');
 
     }
 
+    // temp hack
+    private function checkboxHelper($request, $key_prefix, $len) {
+        if ($len <= 0) return null;
+        $default_value = '0';
+        $separator = ", ";
+        $result = "";
+        for ($x = 1; $x <= $len; $x++) {
+            $result = $result .($request->get($key_prefix. $x) ?? $default_value) .$separator;
+        }
+        return str_replace("0,", "", $result);
+    }
     /**
      * Show the step 3 Form for creating a new patient.
      *
@@ -216,10 +250,8 @@ class PatientController extends Controller
      */
     public function createStep3(Request $request)
     {
-        $patient = $request->session()->get('patient');
-        $sexes = Sex::all()->sortBy('id');
-        $civil_statuses = CivilStatus::all()->sortBy('id');
-        return view('patients.create-step3')->with(compact('patient', 'sexes', 'civil_statuses', 'data'));
+        $patient = $request->session()->get('patient');;
+        return view('patients.create-step3')->with(compact('patient'));
     }
 
     /**
@@ -242,9 +274,7 @@ class PatientController extends Controller
     public function createStep4(Request $request)
     {
         $patient = $request->session()->get('patient');
-        $sexes = Sex::all()->sortBy('id');
-        $civil_statuses = CivilStatus::all()->sortBy('id');
-        return view('patients.create-step4')->with(compact('patient', 'sexes', 'civil_statuses', 'data'));
+        return view('patients.create-step4')->with(compact('patient'));
     }
 
     /**
