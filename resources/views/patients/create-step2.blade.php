@@ -16,7 +16,7 @@
                 @endif
                 <form method="post" action="/patients/create-step2">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <label for="query01">1. Do you have ANY current or chronic illnesses? ( e.g. dermatologic & medical illnesses including cancer/s )</label>
                         <div class="row">
                             <div class="col-md-3">
@@ -30,7 +30,7 @@
                             <input type="text" class="form-control col-md-9" name="query01-extra" placeholder="If yes, please indicate" disabled value="{{isset($form->query01) ? explode("|| ", $form->query01)[1] : ''}}"/>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <div class="row">
                             <label for="query02-extra" class="col-md-6 pr-1">2. Do you take/use ANY ws on a regular basis?</label>
                             <input type="text" class="form-control col-md-5" name="query02-extra" placeholder="Indicate here if not listed" value="{{isset($form->query02) ? explode("|| ", $form->query02)[1] : ''}}" />
@@ -44,7 +44,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <div class="row">
                             <label for="query03-extra" class="col-md-6 pr-1">3. Do you have any implants in your body?</label>
                             <input type="text" class="form-control col-md-5" name="query03-extra" placeholder="Indicate here if not listed" value="{{isset($form->query03) ? explode("|| ", $form->query03)[1] : ''}}" />
@@ -58,7 +58,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <label for="query04">4. Have you ever consulted with a psychiatrist / psychologist?</label>
                         <div class="row">
                             <div class="col-md-3">
@@ -72,7 +72,7 @@
                             <input type="text" class="form-control col-md-9" name="query04-extra" placeholder="If yes, please indicate" disabled value="{{isset($form->query04) ? explode("|| ", $form->query04)[1] : ''}}" />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <div class="row">
                             <label for="query05-extra" class="col-md-6 pr-1">5. Do you have allergies to any of the following:</label>
                             <input type="text" class="form-control col-md-5" name="query05-extra" placeholder="Indicate here if not listed" value="{{isset($form->query05) ? explode("|| ", $form->query05)[1] : ''}}" />
@@ -86,7 +86,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <legend class="col-form-label pt-0">6. Are you pregnant/lactating?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
@@ -95,7 +95,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <legend class="col-form-label pt-0">7. Is your menstrual period regular?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
@@ -104,7 +104,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <label for="query08">8. Do you have herpes I or II (cold sores) in the area to be treated?</label>
                         <div class="row">
                             <div class="col-md-3">
@@ -118,7 +118,7 @@
                             <input type="text" class="form-control col-md-9" name="query08-extra" placeholder="If yes, when was the last outbreak" disabled value="{{isset($form->query08) ? explode("|| ", $form->query08)[1] : ''}}" />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <legend class="col-form-label pt-0">9. Do you have history of keloid scarring?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
@@ -127,7 +127,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <legend class="col-form-label pt-0">10. Have you ever had any history of light sensitivity?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
@@ -136,7 +136,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <legend class="col-form-label pt-0">11. Have you taken these medications for the last 6 months?</legend>
                         <div class="row mt-2">
                             @foreach($data['medications'][1] as $medication)
@@ -147,7 +147,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <label for="query12">12. Are you currently applying any topical retinoid preparations/prescriptions?</label>
                         <div class="row">
                             <div class="col-md-3">
@@ -161,7 +161,7 @@
                             <input type="text" class="form-control col-md-9" name="query12-extra" placeholder="If yes, please indicate" disabled value="{{isset($form->query12) ? explode("|| ", $form->query12)[1] : ''}}"/>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <label for="query13">13. Are you applying any other topical medications at this time?</label>
                         <div class="row">
                             <div class="col-md-3">
@@ -175,7 +175,7 @@
                             <input type="text" class="form-control col-md-9" name="query13-extra" placeholder="If yes, please indicate" disabled value="{{isset($form->query13) ? explode("|| ", $form->query13)[1] : ''}}"/>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <legend class="col-form-label pt-0">14. Do you wear contact lenses?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
@@ -184,7 +184,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <label for="query15">15. Do you currently use or receive depilatories or waxing?</label>
                         <div class="row">
                             <div class="col-md-3">
@@ -198,11 +198,11 @@
                             <input type="text" class="form-control col-md-9" name="query15-extra" placeholder="If yes, please indicate last treatement" disabled value="{{isset($form->query15) ? explode("|| ", $form->query15)[1] : ''}}"/>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <label for="query16">16. Do you use skin whitening or bleaching products?</label>
                         <textarea class="form-control" name="query16" placeholder="Please enumerate them separated by a comma and a space">{{ $form->query16 ?? '' }}</textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <legend class="col-form-label pt-0">17. Have you had any unprotected sun exposure, used tanning creams or tanning beds in the last 4-6 weeks?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
@@ -211,7 +211,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="form-group">
+                    <div class="form-group"><hr/>
                         <label for="query18">18. Please enumerate your present skin care regiment products.</label>
 {{--                        <input type="text" class="form-control" name="query18" placeholder="Please enumerate them separated by a comma and a space" value="try">--}}
                         <textarea class="form-control" name="query18" placeholder="Please enumerate them separated by a comma and a space">{{ $form->query18 ?? '' }}</textarea>
@@ -246,6 +246,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <hr/>
                     <button type="submit" class="btn btn-primary float-right">Next</button>
                     <a type="button" href="/patients/create-step1" class="btn btn-secondary float-right mr-3">Go Back</a>
                 </form>

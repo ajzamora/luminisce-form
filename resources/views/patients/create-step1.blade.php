@@ -17,6 +17,7 @@
 {{--                <form method="post" action="/patients/create-step1">--}}
                 <form method="post" action="{{ route('patients.create-step1') }}">
                     @csrf
+                    <hr/>
                     <div class="form-row">
                         <div class="form-group col-md-5">
                             <label for="last_name">Last Name:</label>
@@ -76,6 +77,7 @@
                         <label for="work_address">Work Address:</label>
                         <input type="text" class="form-control" name="work_address" placeholder="Work Address" value="{{ $patient->work_address ?? '' }}" />
                     </div>
+                    <hr/>
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="contact_person_full_name">Emergency Contact Person's Name:</label>
@@ -96,6 +98,7 @@
                             <input type="text" class="form-control" name="contact_person_number" placeholder="Contact Person's Number" value="{{ $contact_person->contact_number ?? '' }}" />
                         </div>
                     </div>
+                    <hr/>
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="referrer_full_name">Refferer's Name:</label>
@@ -106,6 +109,7 @@
                             <input type="text" class="form-control" name="patient_referrer_relationship" placeholder="Relationship to Referrer" value="{{ $patient_referrer->relationship ?? '' }}" />
                         </div>
                     </div>
+                    <hr/>
                     <button type="submit" class="btn btn-primary float-right">Next</button>
                     <a type="button" href="/patients" class="btn btn-secondary float-right mr-3">Go Back</a>
                 </form>
