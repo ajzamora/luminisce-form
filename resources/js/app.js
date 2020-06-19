@@ -33,7 +33,6 @@ const app = new Vue({
 
 $(document).ready(function() {
     let $test = [
-        "sex_id",
         "query01", "query04", "query08",
         "query12", "query13", "query15",
         "query19-1",
@@ -44,17 +43,29 @@ $(document).ready(function() {
         "query19-6",
     ];
     $.each( $test, function(i, l){
+        initTextByRadio(l);
+    });
+    $.each( $test, function(i, l){
         toggleTextByRadio(l);
     });
 });
 
-function toggleTextByRadio($test) {
+function initTextByRadio($test) {
+    if ($('input:radio[name^='+$test+']:checked').val() === 'yes') {
+        $('input:text[name^='+$test+']').prop('disabled', false);
+    } else {
+        $('input:text[name^='+$test+']').prop('disabled', true);
+        $('input:text[name^='+$test+']').val('');
+    }
+}
 
+
+function toggleTextByRadio($test) {
     $('input:radio[name^='+$test+']').change(function() {
-        if (this.value === '1') {
+        if (this.value === 'yes') {
             $('input:text[name^='+$test+']').prop('disabled', false);
         }
-        else if (this.value === '2') {
+        else if (this.value === 'no') {
             $('input:text[name^='+$test+']').prop('disabled', true);
             $('input:text[name^='+$test+']').val('');
         }
