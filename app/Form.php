@@ -21,4 +21,8 @@ class Form extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function patient(){
+        return $this->belongsTo('App\Patient');
+    }
 }
