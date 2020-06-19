@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <label for="query02-extra" class="col-md-6 pr-1">2. Do you take/use ANY medications on a regular basis?</label>
+                            <label for="query02-extra" class="col-md-6 pr-1">2. Do you take/use ANY ws on a regular basis?</label>
                             <input type="text" class="form-control col-md-5" name="query02-extra" placeholder="Indicate here if not listed" value="{{isset($form->query02) ? explode("|| ", $form->query02)[1] : ''}}" />
                         </div>
                         <div class="row mt-2">
@@ -90,7 +90,7 @@
                         <legend class="col-form-label pt-0">6. Are you pregnant/lactating?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="query06-{{ $bool['value'] }}" name="query06" value="{{ $bool['id'] }}" class="custom-control-input" {{ (isset($form->query06) && ($bool['id']==$form->query06))? "checked" : "" }}>
+                                <input type="radio" id="query06-{{ $bool['value'] }}" name="query06" value="{{ $bool['value'] }}" class="custom-control-input" {{ (isset($form->query06) && ($bool['value']==$form->query06))? "checked" : "" }}>
                                 <label class="custom-control-label" for="query06-{{ $bool['value'] }}">{{ $bool['value'] }}</label>
                             </div>
                         @endforeach
@@ -99,7 +99,7 @@
                         <legend class="col-form-label pt-0">7. Is your menstrual period regular?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="query07-{{ $bool['value'] }}" name="query07" value="{{ $bool['id'] }}" class="custom-control-input" {{ (isset($form->query07) && ($bool['id']==$form->query07))? "checked" : "" }}>
+                                <input type="radio" id="query07-{{ $bool['value'] }}" name="query07" value="{{ $bool['value'] }}" class="custom-control-input" {{ (isset($form->query07) && ($bool['value']==$form->query07))? "checked" : "" }}>
                                 <label class="custom-control-label" for="query07-{{ $bool['value'] }}">{{ $bool['value'] }}</label>
                             </div>
                         @endforeach
@@ -122,7 +122,7 @@
                         <legend class="col-form-label pt-0">9. Do you have history of keloid scarring?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="query09-{{ $bool['value'] }}" name="query09" value="{{ $bool['id'] }}" class="custom-control-input" {{ (isset($form->query09) && ($bool['id']==$form->query09))? "checked" : "" }}>
+                                <input type="radio" id="query09-{{ $bool['value'] }}" name="query09" value="{{ $bool['value'] }}" class="custom-control-input" {{ (isset($form->query09) && ($bool['value']==$form->query09))? "checked" : "" }}>
                                 <label class="custom-control-label" for="query09-{{ $bool['value'] }}">{{ $bool['value'] }}</label>
                             </div>
                         @endforeach
@@ -131,7 +131,7 @@
                         <legend class="col-form-label pt-0">10. Have you ever had any history of light sensitivity?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="query10-{{ $bool['value'] }}" name="query10" value="{{ $bool['id'] }}" class="custom-control-input" {{ (isset($form->query10) && ($bool['id']==$form->query10))? "checked" : "" }}>
+                                <input type="radio" id="query10-{{ $bool['value'] }}" name="query10" value="{{ $bool['value'] }}" class="custom-control-input" {{ (isset($form->query10) && ($bool['value']==$form->query10))? "checked" : "" }}>
                                 <label class="custom-control-label" for="query10-{{ $bool['value'] }}">{{ $bool['value'] }}</label>
                             </div>
                         @endforeach
@@ -179,7 +179,7 @@
                         <legend class="col-form-label pt-0">14. Do you wear contact lenses?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="query14{{ $bool['value'] }}" name="query14" value="{{ $bool['id'] }}" class="custom-control-input" {{ (isset($form->query14) && ($bool['id']==$form->query14))? "checked" : "" }}>
+                                <input type="radio" id="query14{{ $bool['value'] }}" name="query14" value="{{ $bool['value'] }}" class="custom-control-input" {{ (isset($form->query14) && ($bool['value']==$form->query14))? "checked" : "" }}>
                                 <label class="custom-control-label" for="query14{{ $bool['value'] }}">{{ $bool['value'] }}</label>
                             </div>
                         @endforeach
@@ -206,7 +206,7 @@
                         <legend class="col-form-label pt-0">17. Have you had any unprotected sun exposure, used tanning creams or tanning beds in the last 4-6 weeks?</legend>
                         @foreach($data['bools'] as $bool)
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="query17-{{ $bool['value'] }}" name="query17" value="{{ $bool['id'] }}" class="custom-control-input" {{ (isset($form->query17) && ($bool['id']==$form->query17))? "checked" : "" }}>
+                                <input type="radio" id="query17-{{ $bool['value'] }}" name="query17" value="{{ $bool['value'] }}" class="custom-control-input" {{ (isset($form->query17) && ($bool['value']==$form->query17))? "checked" : "" }}>
                                 <label class="custom-control-label" for="query17-{{ $bool['value'] }}">{{ $bool['value'] }}</label>
                             </div>
                         @endforeach

@@ -11,6 +11,7 @@ use App\PatientReferrer;
 use App\Sex;
 use App\CivilStatus;
 use App\Form;
+use App\CosmeticForm;
 
 class PatientController extends Controller
 {
@@ -250,8 +251,25 @@ class PatientController extends Controller
      */
     public function createStep3(Request $request)
     {
+        $data['cosmetics'][0] = [
+            1 => ['id' => 1, 'value' => '1 - Younger than' ],
+            2 => ['id' => 2, 'value' => '2 - In between younger than and true age' ],
+            3 => ['id' => 3, 'value' => '3 - True age' ],
+            4 => ['id' => 4, 'value' => '4 - In between true age and  older than' ],
+            5 => ['id' => 5, 'value' => '5 - Older than' ],
+        ];
+
+        $data['cosmetics'][1] = [
+            1 => ['id' => 1, 'value' => '1 - Not concerned' ],
+            2 => ['id' => 2, 'value' => '2 - In between not concerned and somewhat concerned' ],
+            3 => ['id' => 3, 'value' => '3 - Somewhat concerned' ],
+            4 => ['id' => 4, 'value' => '4 - In between somewhat concerned and very concerned' ],
+            5 => ['id' => 5, 'value' => '5 - Very concerned' ],
+        ];
+
         $patient = $request->session()->get('patient');;
-        return view('patients.create-step3')->with(compact('patient'));
+        $contact_form = $request->session()->get('contact_form');
+        return view('patients.create-step3')->with(compact('patient', 'contact_form','data'));
     }
 
     /**
@@ -262,7 +280,13 @@ class PatientController extends Controller
      */
     public function postCreateStep3(Request $request)
     {
-
+        $validatedData = $request->validate([
+            'cquery01'=>'nullable', 'cquery02'=>'nullable', 'cquery03'=>'nullable',
+        ]);
+        $contact_form = (empty($request->session()->get('contact_form'))) ?
+            new CosmeticForm : $request->session()->get('contact_form');
+        $contact_form->fill($validatedData);
+        $request->session()->put('contact_form', $contact_form);
         return redirect('/patients/create-step4');
     }
 
