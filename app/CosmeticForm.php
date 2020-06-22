@@ -11,9 +11,7 @@ class CosmeticForm extends Model
         'cquery04', 'cquery05', 'cquery06',
         'cquery07', 'cquery08', 'cquery09',
         'cquery10', 'cquery11', 'cquery12',
-        'cquery13', 'cquery14', 'cquery15',
-        'cquery16', 'cquery17', 'cquery18',
-        'cquery19', 'cquery20', 'cquery21',
+        'cquery13',
     ];
 
     protected $casts = [

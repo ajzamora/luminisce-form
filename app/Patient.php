@@ -17,12 +17,23 @@ class Patient extends Model
         'updated_at' => 'datetime',
     ];
 
-    public function patientContactPeople(){
-        return $this->hasMany('App\PatientContactPerson');
+    public function referrer(){
+        return $this->hasOne('App\Referrer');
     }
 
-    public function contactPeople(){
-        return $this->hasManyThrough('App\ContactPerson', 'App\PatientContactPerson');
+    public function contactPerson() {
+        return $this->hasOne('App\ContactPerson');
     }
 
+    public function form() {
+        return $this->hasOne('App\Form');
+    }
+
+    public function cosmeticForm() {
+        return $this->hasOne('App\CosmeticForm');
+    }
+
+    public function transaction() {
+        return $this->hasOne('App\Transaction');
+    }
 }

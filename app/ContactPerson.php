@@ -10,6 +10,7 @@ class ContactPerson extends Model
         'full_name',
         'home_address',
         'contact_number',
+        'relationship',
     ];
 
     protected $casts = [
@@ -17,11 +18,7 @@ class ContactPerson extends Model
         'updated_at' => 'datetime',
     ];
 
-    public function patientContactPeople(){
-        return $this->hasMany('App\PatientContactPerson');
-    }
-
-    public function patients(){
-        return $this->hasManyThrough('App\Patient', 'App\PatientContactPerson');
+    public function patient(){
+        return $this->belongsTo('App\Patient');
     }
 }

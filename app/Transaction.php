@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PatientContactPerson extends Model
+class Transaction extends Model
 {
     protected $fillable = [
-        'relationship',
+        'date', 'particular',
+        'paid', 'mode', 'bal',
+        'dc', 'packages', 'remarks',
     ];
 
     protected $casts = [
@@ -17,9 +19,5 @@ class PatientContactPerson extends Model
 
     public function patient(){
         return $this->belongsTo('App\Patient');
-    }
-
-    public function contactPerson(){
-        return $this->belongsTo('App\ContactPerson');
     }
 }
