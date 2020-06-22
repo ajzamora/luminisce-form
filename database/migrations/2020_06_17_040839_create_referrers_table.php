@@ -15,7 +15,12 @@ class CreateReferrersTable extends Migration
     {
         Schema::create('referrers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('full_name');
+            $table->foreignId('patient_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->string('full_name')->nullable();
+            $table->string('relationship')->nullable();
             $table->timestamps();
 
             $table->index(['full_name', 'created_at', 'updated_at']);

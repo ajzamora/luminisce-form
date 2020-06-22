@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePatientContactPeopleTable extends Migration
+class CreateContactPeopleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,18 @@ class CreatePatientContactPeopleTable extends Migration
      */
     public function up()
     {
-        Schema::create('patient_contact_people', function (Blueprint $table) {
+        Schema::create('contact_people', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('patient_id')
                 ->constrained('patients')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignId('contact_person_id')
-                ->constrained('contact_people')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->string('relationship');
+            $table->string('full_name')->nullable();
+            $table->string('home_address')->nullable();
+            $table->unsignedInteger('contact_number')->nullable();
+            $table->string('relationship')->nullable();
             $table->timestamps();
-
-//            $table->primary(['patient_id', 'contact_person_id']);
-            $table->index(['relationship', 'created_at', 'updated_at']);
+            $table->index(['full_name', 'created_at', 'updated_at']);
         });
     }
 
@@ -38,6 +35,6 @@ class CreatePatientContactPeopleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patient_contact_people');
+        Schema::dropIfExists('contact_people');
     }
 }

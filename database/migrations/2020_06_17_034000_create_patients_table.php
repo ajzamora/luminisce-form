@@ -15,17 +15,18 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('first_name', 100);
-            $table->string('last_name', 100);
-            $table->char('middle_initial', 5)->nullable();
-            $table->unsignedTinyInteger('age');
-            $table->string('home_address');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->char('middle_initial')->nullable();
+            $table->unsignedTinyInteger('age')->nullable();
+            $table->string('home_address')->nullable();
             $table->string('work_address')->nullable();
-            $table->string('email')->unique();
-            $table->unsignedInteger('mobile_number');
+            $table->string('email')->nullable();
+            $table->unsignedInteger('mobile_number')->nullable();
             $table->unsignedInteger('landline_number')->nullable();
             $table->unsignedTinyInteger('sex_id');
-            $table->unsignedTinyInteger('civil_status_id');
+            $table->unsignedTinyInteger('civil_status_id')->nullable();
+            $table->unsignedBigInteger('encoder_id')->nullable();
             $table->timestamps();
 
             $table->foreign('sex_id')->references('id')->on('sexes')
