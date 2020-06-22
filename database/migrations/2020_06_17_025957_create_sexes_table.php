@@ -19,6 +19,11 @@ class CreateSexesTable extends Migration
 
 //            $table->set('sex', ['male', 'female']);
         });
+
+        DB::table('sexes')->insert([
+            ['id' => 1, 'sex' => 'male'],
+            ['id' => 2, 'sex' => 'female']
+        ]);
     }
 
     /**
