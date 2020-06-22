@@ -8,7 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="app" class="container" style="margin-bottom: 50px; margin-top: 50px">
+<div id="app" class="container mb-5 mt-5">
     @yield('main')
 </div>
 </body>

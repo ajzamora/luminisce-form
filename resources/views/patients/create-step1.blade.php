@@ -40,8 +40,8 @@
                         <div class="form-group col-md-3 mr-5">
                             <label for="civil_status_id">Civil Status:</label>
                             <select id="civil_status_id" name="civil_status_id" class="form-control custom-select">
-                                @foreach ($civil_statuses as $civil_status)
-                                    <option value="{{ $civil_status->id }}" {{ (isset($patient->civil_status_id) && ($civil_status->id==$patient->civil_status_id))? "selected" : "" }} >{{ $civil_status->status }}</option>
+                                @foreach ($civilStatuses as $civilStatus)
+                                    <option value="{{ $civilStatus->id }}" {{ (isset($patient->civil_status_id) && ($civilStatus->id==$patient->civil_status_id))? "selected" : "" }} >{{ $civilStatus->status }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -81,21 +81,21 @@
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="contact_person_full_name">Emergency Contact Person's Name:</label>
-                            <input type="text" class="form-control" name="contact_person_full_name" placeholder="Contact Person's Full-name (First name, Initial, Last name)" value="{{ $contact_person->full_name ?? '' }}" />
+                            <input type="text" class="form-control" name="contact_person_full_name" placeholder="Contact Person's Full-name (First name, Initial, Last name)" value="{{ $contactPerson->full_name ?? '' }}" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="patient_contact_person_relationship">Relationship:</label>
-                            <input type="text" class="form-control" name="patient_contact_person_relationship" placeholder="Relationship to Contact Person" value="{{ $patient_contact_person->relationship ?? '' }}" />
+                            <input type="text" class="form-control" name="patient_contact_person_relationship" placeholder="Relationship to Contact Person" value="{{ $contactPerson->relationship ?? '' }}" />
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <label for="contact_person_address">Contact Person's Address:</label>
-                            <input type="text" class="form-control" name="contact_person_address" placeholder="Contact Person's Address" value="{{ $contact_person->home_address ?? '' }}" />
+                            <input type="text" class="form-control" name="contact_person_address" placeholder="Contact Person's Address" value="{{ $contactPerson->home_address ?? '' }}" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="contact_person_number">Contact Number:</label>
-                            <input type="text" class="form-control" name="contact_person_number" placeholder="Contact Person's Number" value="{{ $contact_person->contact_number ?? '' }}" />
+                            <input type="text" class="form-control" name="contact_person_number" placeholder="Contact Person's Number" value="{{ $contactPerson->contact_number ?? '' }}" />
                         </div>
                     </div>
                     <hr/>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="patient_referrer_relationship">Relationship:</label>
-                            <input type="text" class="form-control" name="patient_referrer_relationship" placeholder="Relationship to Referrer" value="{{ $patient_referrer->relationship ?? '' }}" />
+                            <input type="text" class="form-control" name="patient_referrer_relationship" placeholder="Relationship to Referrer" value="{{ $referrer->relationship ?? '' }}" />
                         </div>
                     </div>
                     <hr/>

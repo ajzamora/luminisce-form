@@ -20,27 +20,27 @@
                     <div class="form-row">
                         <div class="form-group col-md-5">
                             <label for="last_name">Last Name:</label>
-                            <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{ $patient->last_name ?? '' }}" readonly/>
+                            <input type="text" class="form-control" name="last_name" value="{{ $patient->last_name ?? '' }}" readonly/>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="first_name">First Name:</label>
-                            <input type="text" class="form-control" name="first_name" placeholder="First Name" value="{{ $patient->first_name ?? ''}}" readonly/>
+                            <input type="text" class="form-control" name="first_name" value="{{ $patient->first_name ?? ''}}" readonly/>
                         </div>
                         <div class="form-group col-md-1">
                             <label for="middle_initial">MI:</label>
-                            <input type="text" class="form-control" name="middle_initial" placeholder="MI" value="{{ $patient->middle_initial ?? '' }}" readonly/>
+                            <input type="text" class="form-control" name="middle_initial" value="{{ $patient->middle_initial ?? '' }}" readonly/>
                         </div>
                     </div>
                     <div class="form-group"><hr/>
                         <label for="query01">What are the reasons for your visit today?</label>
-                        <input type="text" class="form-control" id="cquery01" name="cquery01" placeholder="Reason for visit" value="{{ $cosmetic_form->cquery01 ?? ''}}" />
+                        <input type="text" class="form-control" id="cquery01" name="cquery01" placeholder="Reason for visit" value="{{ $cosmeticForm->cquery01 ?? ''}}" />
                     </div>
                     <div class="form-group"><hr/>
                         <label for="query02">1. When looking at my face in the mirror, I believe I look younger, the same as, or older than my true age.</label>
                         <div class="row ml-1">
                                 @foreach($data['cosmetics'][0] as $cosmetic)
                                     <div class="custom-control custom-radio col-md-12">
-                                        <input type="radio" id="cquery02-{{ $cosmetic['value'] }}" name="cquery02" value="{{ $cosmetic['value'] }}" class="custom-control-input" {{(isset($cosmetic_form->cquery02) && ($cosmetic['value']==$cosmetic_form->cquery02)) ? "checked" : "" }}>
+                                        <input type="radio" id="cquery02-{{ $cosmetic['value'] }}" name="cquery02" value="{{ $cosmetic['value'] }}" class="custom-control-input" {{(isset($cosmeticForm->cquery02) && ($cosmetic['value']==$cosmeticForm->cquery02)) ? "checked" : "" }}>
                                         <label class="custom-control-label" for="cquery02-{{ $cosmetic['value'] }}">{{ $cosmetic['value'] }}</label>
                                     </div>
                                 @endforeach
@@ -51,7 +51,7 @@
                         <div class="row ml-1">
                             @foreach($data['cosmetics'][1] as $cosmetic)
                                 <div class="custom-control custom-radio col-md-12">
-                                    <input type="radio" id="cquery03-{{ $cosmetic['value'] }}" name="cquery03" value="{{ $cosmetic['value'] }}" class="custom-control-input" {{(isset($cosmetic_form->cquery03) && ($cosmetic['value']==$cosmetic_form->cquery03)) ? "checked" : "" }}>
+                                    <input type="radio" id="cquery03-{{ $cosmetic['value'] }}" name="cquery03" value="{{ $cosmetic['value'] }}" class="custom-control-input" {{(isset($cosmeticForm->cquery03) && ($cosmetic['value']==$cosmeticForm->cquery03)) ? "checked" : "" }}>
                                     <label class="custom-control-label" for="cquery03-{{ $cosmetic['value'] }}">{{ $cosmetic['value'] }}</label>
                                 </div>
                             @endforeach

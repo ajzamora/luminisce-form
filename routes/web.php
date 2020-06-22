@@ -45,6 +45,11 @@ Route::get('/patients/create-step4', 'PatientController@createStep4')->name('pat
 Route::post('/patients/create-step4', 'PatientController@postCreateStep4')->name('patients.create-step4')
     ->middleware('auth');
 
+Route::get('/patients/create-step5', 'PatientController@createStep5')->name('patients.create-step5')
+    ->middleware('auth');
+Route::post('/patients/create-step5', 'PatientController@postCreateStep5')->name('patients.create-step5')
+    ->middleware('auth');
+
 Route::resource('patients', "PatientController")
     ->middleware('auth');
 
