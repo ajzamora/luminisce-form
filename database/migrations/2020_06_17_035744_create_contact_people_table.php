@@ -21,7 +21,7 @@ class CreateContactPeopleTable extends Migration
                 ->onDelete('cascade');
             $table->string('full_name')->nullable();
             $table->string('home_address')->nullable();
-            $table->unsignedInteger('contact_number')->nullable();
+            $table->unsignedBigInteger('contact_number')->nullable();
             $table->string('relationship')->nullable();
             $table->timestamps();
             $table->index(['full_name', 'created_at', 'updated_at']);

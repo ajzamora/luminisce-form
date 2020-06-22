@@ -22,8 +22,8 @@ class CreatePatientsTable extends Migration
             $table->string('home_address')->nullable();
             $table->string('work_address')->nullable();
             $table->string('email')->nullable();
-            $table->unsignedInteger('mobile_number')->nullable();
-            $table->unsignedInteger('landline_number')->nullable();
+            $table->unsignedBigInteger('mobile_number')->nullable();
+            $table->unsignedBigInteger('landline_number')->nullable();
             $table->unsignedTinyInteger('sex_id');
             $table->unsignedTinyInteger('civil_status_id')->nullable();
             $table->unsignedBigInteger('encoder_id')->nullable();

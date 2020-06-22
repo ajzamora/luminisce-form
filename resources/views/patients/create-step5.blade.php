@@ -49,7 +49,7 @@
 {{--                                <td class="text-center"><input type="button" class="btn btn-danger remove-row" value="x" onclick="del()"></td>--}}
 {{--                            </tr>--}}
 {{--                        @endfor--}}
-                        @if (is_countable($transaction['date']))
+                        @if (isset($transaction['date']) && is_countable($transaction['date']))
                             @for ($i = 0; $i < count($transaction['date']); $i++)
                                 <tr>
                                     <td><input type="text" class="form-control form-control-md" name="trans[date][]" value="{{$transaction['date'][$i]}}"></td>
@@ -99,7 +99,7 @@
             '<td><input type="text" class="form-control form-control-md" name="trans[dc][]"></td>' +
             '<td><input type="text" class="form-control form-control-md" name="trans[packages][]"></td>' +
             '<td><input type="text" class="form-control form-control-md" name="trans[remarks][]"></td>' +
-            '<td class="text-center"><input type="button" class="btn btn-danger remove-row" value="x"></td>';
+            '<td class="text-center"><input type="button" class="btn btn-danger remove-row" value="x" onclick="del()"></td>';
         document.getElementById(divName).appendChild(newrow);
     }
 
