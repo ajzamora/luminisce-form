@@ -25,8 +25,8 @@ class Patient extends Model
         return $this->hasOne('App\ContactPerson');
     }
 
-    public function form() {
-        return $this->hasOne('App\Form');
+    public function patientForm() {
+        return $this->hasOne('App\PatientForm');
     }
 
     public function cosmeticForm() {
