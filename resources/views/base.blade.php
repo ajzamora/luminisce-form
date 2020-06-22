@@ -3,12 +3,13 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laravel 7</title>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class="container" style="margin-bottom: 50px; margin-top: 50px">
+<div id="app" class="container mb-5 mt-5">
     @yield('main')
 </div>
-<script src="{{ asset('js/app.js') }}" type="text/js"></script>
 </body>
 </html>

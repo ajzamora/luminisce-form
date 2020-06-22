@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ContactPerson extends Model
+class Transaction extends Model
 {
     protected $fillable = [
-        'full_name',
-        'home_address',
-        'contact_number',
-        'relationship',
+        'date', 'particular',
+        'paid', 'mode', 'bal',
+        'dc', 'packages', 'remarks',
     ];
 
     protected $casts = [

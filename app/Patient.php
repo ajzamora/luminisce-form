@@ -16,4 +16,24 @@ class Patient extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function referrer(){
+        return $this->hasOne('App\Referrer');
+    }
+
+    public function contactPerson() {
+        return $this->hasOne('App\ContactPerson');
+    }
+
+    public function form() {
+        return $this->hasOne('App\Form');
+    }
+
+    public function cosmeticForm() {
+        return $this->hasOne('App\CosmeticForm');
+    }
+
+    public function transaction() {
+        return $this->hasOne('App\Transaction');
+    }
 }
