@@ -33,9 +33,9 @@
                         <td>{{$patient->middle_initial}}</td>
                         <td>{{$patient->email}}</td>
                         <td>{{$patient->age}}</td>
-                        <td class="text-center">
-                            <a href="{{ route('patients.edit',$patient->id)}}" class="btn btn-primary">Edit</a>
-                        </td>
+{{--                        <td class="text-center">--}}
+{{--                            <a href="{{ route('patients.edit',$patient->id)}}" class="btn btn-primary">Edit</a>--}}
+{{--                        </td>--}}
                         <td class="text-center">
                             <form action="{{ route('patients.destroy', $patient->id)}}" method="post">
                                 @csrf
