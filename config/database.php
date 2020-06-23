@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Str;
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-$host = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$database = substr($url["path"], 1);
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$host = $url["host"] ?? '127.0.0.1';
+$username = $url["user"] ?? 'forge';
+$password = $url["pass"] ?? 'forge';
+$database = substr($url["path"], 1) ?? '';
 
 
 return [
@@ -50,12 +50,14 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+
+
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => $host,
-            'database'  => $database,
-            'username'  => $username,
-            'password'  => $password,
+            'host'      => env('DB_HOST', $host),
+            'database'  => env('DB_DATABASE', $database),
+            'username'  => env('DB_USERNAME', $username),
+            'password'  => env('DB_PASSWORD', $password),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'url' => env('DATABASE_URL'),

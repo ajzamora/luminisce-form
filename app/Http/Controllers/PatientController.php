@@ -8,7 +8,7 @@ use App\ContactPerson;
 use App\Referrer;
 use App\Sex;
 use App\CivilStatus;
-use App\Form;
+use App\PatientForm;
 use App\CosmeticForm;
 use App\Transaction;
 use Illuminate\Support\Facades\Auth;
@@ -151,9 +151,9 @@ class PatientController extends Controller
             6 => ['id' => 6, 'type' => 'Permanent Implant Tattoo' ],
         ];
 
-        $form = $request->session()->get('form');
+        $patient_form = $request->session()->get('patient_form');
         return view('patients.create-step2')->with(compact(
-            'form', 'data'
+            'patient_form', 'data'
         ));
     }
 
@@ -176,28 +176,28 @@ class PatientController extends Controller
             'query19_5'=>'nullable', 'query19_4'=>'nullable', 'query19_6'=>'nullable',
         ]);
 
-        $form = (empty($request->session()->get('form'))) ?
-            new Form : $request->session()->get('form');
-        $form->fill($validatedData);
+        $patient_form = (empty($request->session()->get('patient_form'))) ?
+            new PatientForm : $request->session()->get('patient_form');
+        $patient_form->fill($validatedData);
 
-        $form->query01 = $request->get('query01') . "|| " . $request->get('query01-extra');
-        $form->query04 = $request->get('query04') . "|| " . $request->get('query04-extra');
-        $form->query08 = $request->get('query08') . "|| " . $request->get('query08-extra');
-        $form->query12 = $request->get('query12') . "|| " . $request->get('query12-extra');
-        $form->query13 = $request->get('query13') . "|| " . $request->get('query13-extra');
-        $form->query15 = $request->get('query15') . "|| " . $request->get('query15-extra');
-        $form->query02 = $this->checkboxHelper($request, 'query02-', 6) . "|| " . $request->get("query02-extra");
-        $form->query03 = $this->checkboxHelper($request, 'query03-', 3) . "|| " . $request->get("query03-extra");
-        $form->query05 = $this->checkboxHelper($request, 'query05-', 3) . "|| " . $request->get("query05-extra");
-        $form->query11 = $this->checkboxHelper($request, 'query11-', 5);
-        $form->query19_1 = $request->get('query19-1bool') . "|| " . $request->get('query19-1what') . "|| " . $request->get('query19-1when') . "|| " . $request->get('query19-1where');
-        $form->query19_2 = $request->get('query19-2bool') . "|| " . $request->get('query19-2what') . "|| " . $request->get('query19-2when') . "|| " . $request->get('query19-2where');
-        $form->query19_3 = $request->get('query19-3bool') . "|| " . $request->get('query19-3what') . "|| " . $request->get('query19-3when') . "|| " . $request->get('query19-3where');
-        $form->query19_4 = $request->get('query19-4bool') . "|| " . $request->get('query19-4what') . "|| " . $request->get('query19-4when') . "|| " . $request->get('query19-4where');
-        $form->query19_5 = $request->get('query19-5bool') . "|| " . $request->get('query19-5what') . "|| " . $request->get('query19-5when') . "|| " . $request->get('query19-5where');
-        $form->query19_6 = $request->get('query19-6bool') . "|| " . $request->get('query19-6what') . "|| " . $request->get('query19-6when') . "|| " . $request->get('query19-6where');
+        $patient_form->query01 = $request->get('query01') . "|| " . $request->get('query01-extra');
+        $patient_form->query04 = $request->get('query04') . "|| " . $request->get('query04-extra');
+        $patient_form->query08 = $request->get('query08') . "|| " . $request->get('query08-extra');
+        $patient_form->query12 = $request->get('query12') . "|| " . $request->get('query12-extra');
+        $patient_form->query13 = $request->get('query13') . "|| " . $request->get('query13-extra');
+        $patient_form->query15 = $request->get('query15') . "|| " . $request->get('query15-extra');
+        $patient_form->query02 = $this->checkboxHelper($request, 'query02-', 6) . "|| " . $request->get("query02-extra");
+        $patient_form->query03 = $this->checkboxHelper($request, 'query03-', 3) . "|| " . $request->get("query03-extra");
+        $patient_form->query05 = $this->checkboxHelper($request, 'query05-', 3) . "|| " . $request->get("query05-extra");
+        $patient_form->query11 = $this->checkboxHelper($request, 'query11-', 5);
+        $patient_form->query19_1 = $request->get('query19-1bool') . "|| " . $request->get('query19-1what') . "|| " . $request->get('query19-1when') . "|| " . $request->get('query19-1where');
+        $patient_form->query19_2 = $request->get('query19-2bool') . "|| " . $request->get('query19-2what') . "|| " . $request->get('query19-2when') . "|| " . $request->get('query19-2where');
+        $patient_form->query19_3 = $request->get('query19-3bool') . "|| " . $request->get('query19-3what') . "|| " . $request->get('query19-3when') . "|| " . $request->get('query19-3where');
+        $patient_form->query19_4 = $request->get('query19-4bool') . "|| " . $request->get('query19-4what') . "|| " . $request->get('query19-4when') . "|| " . $request->get('query19-4where');
+        $patient_form->query19_5 = $request->get('query19-5bool') . "|| " . $request->get('query19-5what') . "|| " . $request->get('query19-5when') . "|| " . $request->get('query19-5where');
+        $patient_form->query19_6 = $request->get('query19-6bool') . "|| " . $request->get('query19-6what') . "|| " . $request->get('query19-6when') . "|| " . $request->get('query19-6where');
 
-        $request->session()->put('form', $form);
+        $request->session()->put('patient_form', $patient_form);
         return redirect('/patients/create-step3');
     }
 
@@ -414,7 +414,7 @@ class PatientController extends Controller
         $patient = $request->session()->get('patient');
         $contactPerson = $request->session()->get('contactPerson');
         $referrer = $request->session()->get('referrer');
-        $form = $request->session()->get('form');
+        $patient_form = $request->session()->get('patient_form');
         $cosmeticForm = $request->session()->get('cosmeticForm');
 
         $patient->encoder_id = auth()->id();
@@ -422,10 +422,10 @@ class PatientController extends Controller
 
         $patient->contactPerson()->save($contactPerson);
         $patient->referrer()->save($referrer);
-        $patient->form()->save($form);
+        $patient->patientForm()->save($patient_form);
         $patient->cosmeticForm()->save($cosmeticForm);
         $patient->transaction()->save($transaction);
-        $request->session()->forget(['patient', 'contactPerson', 'referrer', 'form', 'cosmeticForm']);
+        $request->session()->forget(['patient', 'contactPerson', 'referrer', 'patient_form', 'cosmeticForm']);
 
         return redirect('/patients')->with('success', 'Patients saved!');
     }
@@ -465,7 +465,7 @@ class PatientController extends Controller
         $patient = $request->session()->get('patient');
         $contactPerson = $request->session()->get('contactPerson');
         $referrer = $request->session()->get('referrer');
-        $form = $request->session()->get('form');
+        $patient_form = $request->session()->get('patient_form');
         $cosmeticForm = $request->session()->get('cosmeticForm');
         $transaction = $request->session()->get('transaction');
 
@@ -483,7 +483,7 @@ class PatientController extends Controller
 
         $patient->contactPerson()->save($contactPerson);
         $patient->referrer()->save($referrer);
-        $patient->form()->save($form);
+        $patient->patientForm()->save($patient_form);
         $patient->cosmeticForm()->save($cosmeticForm);
         $patient->transaction()->save($transaction);
         return redirect('/patients')->with('success', 'Patients saved!');

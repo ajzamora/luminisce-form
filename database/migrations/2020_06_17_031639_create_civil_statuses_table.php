@@ -19,6 +19,15 @@ class CreateCivilStatusesTable extends Migration
 
 //            $table->set('status', ['single', 'married', 'separated', 'divorced', 'widowed']);
         });
+
+        DB::table('civil_statuses')->insert([
+            ['id' => 1, 'status' => 'choose...'],
+            ['id' => 2, 'status' => 'single'],
+            ['id' => 3, 'status' => 'married'],
+            ['id' => 4, 'status' => 'separated'],
+            ['id' => 5, 'status' => 'divorced'],
+            ['id' => 6, 'status' => 'widowed']
+        ]);
     }
 
     /**
